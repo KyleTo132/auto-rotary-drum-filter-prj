@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ESP IoT Firebase App</title>
+
+    <!-- update the version number as needed -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+
+    <!-- include only the Firebase features as you need -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyC6l3fjZIqmF_p1VulxnHyZnL0XuVq2Rys",
+        authDomain: "auto-rotary-drum-filter.firebaseapp.com",
+        databaseURL:
+          "https://auto-rotary-drum-filter-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "auto-rotary-drum-filter",
+        storageBucket: "auto-rotary-drum-filter.appspot.com",
+        messagingSenderId: "715815537462",
+        appId: "1:715815537462:web:ad967e2764c450c8bd8197",
+      };
+
+      // Initialize Firebase
+      //const app = initializeApp(firebaseConfig);
+      firebase.initializeApp(firebaseConfig);
+
+      // Make auth and database references
+      const auth = firebase.auth();
+      const db = firebase.database();
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <!--TOP BAR-->
+    <div class="topnav">
+      <h1>Sensor Readings App <i class="fas fa-clipboard-list"></i></h1>
+    </div>
+
+    <!--AUTHENTICATION BAR (USER DETAILS/LOGOUT BUTTON)-->
+    <div id="authentication-bar" style="display: none">
+      <p>
+        <span id="authentication-status">User logged in</span>
+        <span id="user-details">USEREMAIL</span>
+        <a href="/" id="logout-link">(logout)</a>
+      </p>
+    </div>
+
+    <!--LOGIN FORM-->
+    <form id="login-form" style="display: none">
+      <div class="form-elements-container">
+        <label for="input-email"><b>Email</b></label>
+        <input
+          type="text"
+          placeholder="Enter Username"
+          id="input-email"
+          required
+        />
+
+        <label for="input-password"><b>Password</b></label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          id="input-password"
+          required
+        />
+
+        <button type="submit" id="login-button">Login</button>
+        <p id="error-message" style="color: red"></p>
+      </div>
+    </form>
+
+    <!--CONTENT (SENSOR READINGS)-->
+    <div class="content-sign-in" id="content-sign-in" style="display: none">
+      <div class="cards">
+        <!--TEMPERATURE-->
+        <div class="card">
+          <p>
+            <i class="fas fa-thermometer-half" style="color: #fa5102"></i>
+            TEMPERATURE
+          </p>
+          <p>
+            <span class="reading"><span id="temp"></span> &deg;C</span>
+          </p>
+        </div>
+
+        <!--RELAY 1-->
+        <div class="card">
+          <p>
+            <i class="fas fa-sync-alt" style="color: #4fe274"></i>
+            RELAY 1
+          </p>
+          <p>
+            <span class="reading"><span id="rl1"></span> ON/OFF</span>
+          </p>
+        </div>
+
+        <!--TANK SIZE-->
+        <div class="card">
+          <p>
+            <i class="fas fa-tint" style="color: #00add6"></i>
+            WATER LEVEL
+          </p>
+          <p>
+            <span class="reading"><span id="waterl"></span> &percnt;</span>
+          </p>
+        </div>
+
+        <!--TANK SIZE-->
+        <div class="card">
+          <p>
+            <i class="fas fa-shower" style="color: #0ebcc9"></i>
+            CLEAN DRUM
+          </p>
+          <p>
+            <span class="reading"><span id="waterl"></span>ON/OFF</span>
+          </p>
+          <p>
+            <div class="progress">
+              <div class="toggle-btn" id="unactive">
+                <div class="inner-circle"></div>
+              </div>
+              <div class="toggle-btn active" id="active">
+                <div class="inner-circle"></div>
+              </div>
+            </div>
+          </p>
+        </div>
+
+        
+        <!-- end div card-->
+      </div>
+    </div>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/index.js"></script>
+    <!--<script src="scripts/script.js"></script>-->
+  </body>
+</html>
